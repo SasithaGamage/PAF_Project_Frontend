@@ -122,7 +122,7 @@ public class Funds
 	
 	public String getAllFundDetails()
 	{
-		JsonObject fundDetails = new JsonObject();
+//		JsonObject fundDetails = new JsonObject();
 
 		String output = "error";
 
@@ -134,29 +134,62 @@ public class Funds
 				return fundDetails.toString();
 			}
 
+			output = "<table border=\"1\"><tr><th>Fund ID</th> 
+					 <th>Research ID</th><th>Funder Name</th><th>Fund Amount</th>
+					 <th>Funding Date</th> 
+					 <th>Fund Status</th> 
+					 <th>Update</th><th>Remove</th></tr>";
+			
 			String readSql = "SELECT * FROM funds";
 			PreparedStatement statement = con.prepareStatement(readSql);
 			ResultSet results = statement.executeQuery(readSql);
 
-			JsonArray fundArray = new JsonArray();
+//			JsonArray fundArray = new JsonArray();
 			
 
 			while(results.next())
 			{
-				JsonObject fundObject = new JsonObject();
-				fundObject.addProperty("fundID", results.getInt(1));
-				fundObject.addProperty("researchID", results.getString(2));
-				fundObject.addProperty("funderName", results.getString(3));
-				fundObject.addProperty("amount", results.getDouble(4));
-				fundObject.addProperty("fundingDate", results.getString(5));
-				fundObject.addProperty("fundStatus", results.getString(6));
+//				JsonObject fundObject = new JsonObject();
+//				fundObject.addProperty("fundID", results.getInt(1));
+//				fundObject.addProperty("researchID", results.getString(2));
+//				fundObject.addProperty("funderName", results.getString(3));
+//				fundObject.addProperty("amount", results.getDouble(4));
+//				fundObject.addProperty("fundingDate", results.getString(5));
+//				fundObject.addProperty("fundStatus", results.getString(6));
+//				
+//				fundArray.add(fundObject);
+				String fundID = Integer.toString(results.getInt("fundID"));
+				String researchID = Integer.toString(results.getInt("researchID")); 
+				String funderName = results.getString("funderName"); 
+				String amount = Double.toString(results.getDouble("amount"));
+				String fundingDate = results.getString("fundingDate"); 
+				String fundStatus = results.getString("fundStatus"); 
+				 // Add into the html table
 				
-				fundArray.add(fundObject);
+				 output += "<tr><td><input id='hidItemIDUpdate' 
+				 name='hidItemIDUpdate' 
+				 type='hidden' value='" + fund ID + "'>"
+				 + fundID + "</td>"; 
+				 output += "<td>" + researchID + "</td>"; 
+				 output += "<td>" + funderName + "</td>"; 
+				 output += "<td>" + amount + "</td>"; 
+				 output += "<td>" + fundingDate + "</td>";
+				 output += "<td>" + fundStatus + "</td>";
+				 // buttons
+				 output += "<td><input name='btnUpdate' 
+				 type='button' value='Update' 
+				 class=' btnUpdate btn btn-secondary'></td>
+				 <td><form method='post' action='items.jsp'>
+				 <input name='btnRemove' type='submit' 
+				 value='Remove' class='btn btn-danger'>
+				 <input name='hidItemIDDelete' type='hidden' 
+				 value='" + fundID + "'>" + "</form></td></tr>"; 
 			}
 
-			fundDetails.add("funds", fundArray);
+//			fundDetails.add("funds", fundArray);
 
 			con.close();
+			output += "</table>"; 
 
 		}catch(Exception e)
 		{

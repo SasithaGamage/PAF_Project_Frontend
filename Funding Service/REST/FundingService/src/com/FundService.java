@@ -139,7 +139,7 @@ public class FundService {
 	@GET
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.)
 	public String getAllresearchProjects(@DefaultValue("") @QueryParam("key") String key)
 	{
 //		JsonObject fundObj = new JsonParser().parse(fundData).getAsJsonObject();
