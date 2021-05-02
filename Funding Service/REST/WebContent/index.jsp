@@ -11,6 +11,7 @@
 <script src="Components/main.js"></script>
 </head>
 <body>
+
 <form id="formUser" name="formUser">
   <div class="form-group">
     <label for="researchID">Research ID</label>
@@ -38,6 +39,8 @@
   <input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
   
 </form>
+<div id="alertSuccess" class="alert alert-success"></div>
+<div id="alertError" class="alert alert-danger"></div>
 
 <br>
 <div id="divItemsGrid">
