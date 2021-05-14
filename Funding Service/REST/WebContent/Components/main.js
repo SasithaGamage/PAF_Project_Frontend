@@ -125,10 +125,15 @@ function validateItemForm()
 	{
 		return "Enter Funder Name.";
 	}
+	var amount = $("#amount").val();
 	//Research Category
 	if ($("#amount").val().trim() == "")
 	{
 		return "Enter Fund Amount.";
+	}
+	if (!$.isNumeric(amount))
+	{
+		return "Enter a number value.";
 	}
 	//Research Description
 	if ($("#fundingDate").val().trim() == "")
