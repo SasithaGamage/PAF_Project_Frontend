@@ -115,10 +115,15 @@ if (status == "success")
 } 
 function validateItemForm()
 {
+	var researchID = $("#researchID").val();
 	//Research Name
 	if ($("#researchID").val().trim() == "")
 	{
 		return "Insert Research ID.";
+	}
+	if (!$.isNumeric(researchID))
+	{
+		return "Enter a number value as ResearchID.";
 	}
 	//Researcher Name
 	if ($("#funderName").val().trim() == "")
