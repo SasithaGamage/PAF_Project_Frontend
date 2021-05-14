@@ -6,13 +6,13 @@ $(document).on("click", "#btnSave", function(event)
  $("#alertError").text(""); 
  $("#alertError").hide(); 
 // Form validation-------------------
-//var status = validateItemForm(); 
-//if (status != true) 
-// { 
-// $("#alertError").text(status); 
-// $("#alertError").show(); 
-// return; 
-// } 
+var status = validateItemForm(); 
+if (status != true) 
+ { 
+ $("#alertError").text(status); 
+ $("#alertError").show(); 
+ return; 
+ } 
 // If valid------------------------
 var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT"; 
  $.ajax( 
@@ -113,4 +113,62 @@ if (status == "success")
 		$("#alertError").show(); 
 	}
 } 
+function validateItemForm()
+{
+	//Research Name
+	if ($("#researchID").val().trim() == "")
+	{
+		return "Insert Research ID.";
+	}
+	//Researcher Name
+	if ($("#funderName").val().trim() == "")
+	{
+		return "Enter Funder Name.";
+	}
+	//Research Category
+	if ($("#amount").val().trim() == "")
+	{
+		return "Enter Fund Amount.";
+	}
+	//Research Description
+	if ($("#fundingDate").val().trim() == "")
+	{
+		return "Enter Funding Date.";
+	}
+	//Research Cost
+	if ($("#fundStatus").val().trim() == "")
+	{
+		return "Enter Fund Status.";
+	}
+
+
+	return true;
+}
+
+
+
+//$(document).ready(function(){  
+//    $('#search').keyup(function(){  
+//         search_table($(this).val());  
+//    });  
+//    function search_table(value){  
+//         $('#employee_table tr').each(function(){  
+//              var found = 'false';  
+//              $(this).each(function(){  
+//                   if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+//                   {  
+//                        found = 'true';  
+//                   }  
+//              });  
+//              if(found == 'true')  
+//              {  
+//                   $(this).show();  
+//              }  
+//              else  
+//              {  
+//                   $(this).hide();  
+//              }  
+//         });  
+//    }  
+//});  
 
